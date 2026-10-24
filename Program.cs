@@ -222,7 +222,8 @@ app.MapGet(
         options.Value.ReportRetentionDays,
     RequestedBy = userName
 });
-    });
+    })
+.RequireAuthorization("StaffOnly");
 
 // 11. Protected staff report-creation endpoint
 
