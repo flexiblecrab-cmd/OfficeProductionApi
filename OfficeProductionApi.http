@@ -1,0 +1,61 @@
+@OfficeProductionApi_HostAddress = http://localhost:5297
+
+### Root endpoint
+GET {{OfficeProductionApi_HostAddress}}/
+Accept: application/json
+
+### Health endpoint
+GET {{OfficeProductionApi_HostAddress}}/health
+Accept: application/json
+
+### Report status without authentication
+# Expected: 401 Unauthorized
+GET {{OfficeProductionApi_HostAddress}}/api/reports/status
+Accept: application/json
+
+### Report status with an incorrect role
+# Expected: 403 Forbidden
+GET {{OfficeProductionApi_HostAddress}}/api/reports/status
+Accept: application/json
+X-Demo-User: Garret
+X-Demo-Role: Student
+
+### Report status with the Staff role
+# Expected: 200 OK
+GET {{OfficeProductionApi_HostAddress}}/api/reports/status
+Accept: application/json
+X-Demo-User: Garret
+X-Demo-Role: Staff
+
+### Create a report successfully
+# Expected: 201 Created
+POST {{OfficeProductionApi_HostAddress}}/api/admin/reports
+Content-Type: application/json
+Accept: application/json
+X-Demo-User: Garret
+X-Demo-Role: Staff
+
+{
+  "title": "Monthly Office Report",
+  "description": "Summary of completed office support activities."
+}
+
+### Validation failure
+# Expected: 400 Bad Request
+POST {{OfficeProductionApi_HostAddress}}/api/admin/reports
+Content-Type: application/json
+Accept: application/json
+X-Demo-User: Garret
+X-Demo-Role: Staff
+
+{
+  "title": "",
+  "description": "Validation test"
+}
+
+### Unexpected failure demonstration
+# Expected: 500 Internal Server Error
+GET {{OfficeProductionApi_HostAddress}}/api/admin/test-error
+Accept: application/json
+X-Demo-User: Garret
+X-Demo-Role: Staff
