@@ -1,9 +1,9 @@
-##Vega Systems Office Production API
+# Vega Systems Office Production API
 
-##Overview
+# Overview
 This project is an ASP.NET Core Minimal API created as a production-readiness package for an office reporting application.
 
-##The application includes:
+# The application includes:
 
 - Externalized application settings
 - Strongly typed Office configuration
@@ -15,12 +15,12 @@ This project is an ASP.NET Core Minimal API created as a production-readiness pa
 - Framework-dependent deployment
 - Production deployment checklist
 
-##Requirements
+# Requirements
 .NET 10 SDK
 Git
 A command-line tool such as Command Prompt or PowerShell
 
-##Safe Configuration
+# Safe Configuration
 The repository includes appsettings.example.json as a safe configuration template.
 
 To configure the application:
